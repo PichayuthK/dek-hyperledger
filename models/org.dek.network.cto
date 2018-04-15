@@ -1,0 +1,74 @@
+/**
+ * Write your model definitions here
+ */
+
+namespace org.dek.network
+
+participant User2 identified by email {
+  o String email
+}
+
+asset User identified by userId {
+  o String userId
+  o String citizenId
+  o String firstname
+  o String lastname
+}
+
+asset Card identified by cardId{
+  o String cardId
+  o String userId
+  o String cardNumber
+  o String point default = "0"
+  o String royaltyProgramId
+  o Boolean isActive default = true
+}
+
+asset RoyaltyProgram identified by royaltyProgramId{
+  o String royaltyProgramId
+  o String royaltyProgramName
+  o String vendorName
+  o Boolean isActive default = true
+}
+
+transaction AddUser {
+  o String userId
+  o String citizenId
+  o String firstname 
+  o String lastname 
+}
+  
+  transaction AddRoyaltyProgram {
+	o String royaltyProgramId
+  	o String royaltyProgramName
+  	o String vendorName
+}
+  
+  transaction TransferPoint{
+  o String userId
+  o String fromCardId
+  o String fromPoint
+  o String toCardId
+  o String toPoint
+
+}
+
+  transaction AddCard{
+	o String cardId
+  	o String userId
+  	o String cardNumber
+  	o String point
+  	o String royaltyProgramId
+}
+  
+
+  event CardHistory {
+  o String userId
+  o String oldCardId 
+  o String oldPoint
+  o String oldCardRoyaltyProgramId  
+  o String newCardId
+  o String newPoint
+  o String newCardRoyaltyProgramId
+  o DateTime dateTime optional
+}
