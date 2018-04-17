@@ -39,7 +39,7 @@ transaction AddUser {
 }
   
   transaction AddRoyaltyProgram {
-	o String royaltyProgramId
+	  o String royaltyProgramId
   	o String royaltyProgramName
   	o String vendorName
 }
